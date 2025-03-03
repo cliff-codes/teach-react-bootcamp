@@ -20,50 +20,15 @@ const brands = [
     },
 ];
 
-const VotesSection = () => {
-    const [totalVotes, setTotalVotes] = useState(0);
-
-    const [brandsAndVotes, setBrandsAndVotes] = useState(
-        brands.map((brand) => ({
-            brand: brand.name,
-            upVotes: 0,
-            downVotes: 0,
-        }))
-    );
-
-    console.log(brandsAndVotes);
-
-    const handleUpvote = (brandName) => {
-        const brandIndex = brandsAndVotes.findIndex((brand) => brand.brand === brandName);
-        brandsAndVotes[brandIndex].upVotes++;
-        setBrandsAndVotes([...brandsAndVotes]);
-    };
-    const handleDownvote = (brandName) => {
-        const brandToDownvote = brandsAndVotes.findIndex((brand) => brand.brand === brandName);
-        brandsAndVotes[brandToDownvote].downVotes++;
-        setBrandsAndVotes([...brandsAndVotes]);
-    };
-
-    const handleVotesReset = () => {
-        setBrandsAndVotes(
-            brands.map((brand) => ({
-                brand: brand.name,
-                upVotes: 0,
-                downVotes: 0,
-            }))
-        );
-    };
-
-    const getTotalVotes = () => {
-        //loop through all the brands
-        // and sum up their upvotes and downvotes
-        let totalVotes = 0;
-        brandsAndVotes.forEach((brand) => {
-            totalVotes += brand.upVotes + brand.downVotes;
-        });
-        setTotalVotes(totalVotes);
-    };
-
+const VotesSection = ({
+    brandsAndVotes,
+    brands,
+    totalVotes,
+    handleDownvote,
+    handleUpvote,
+    handleVotesReset,
+    getTotalVotes,
+}) => {
     useEffect(() => {
         getTotalVotes();
     }, [brandsAndVotes]);
