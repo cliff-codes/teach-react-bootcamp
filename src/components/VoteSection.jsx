@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiLike, BiDislike } from "react-icons/bi";
 
 const brands = [
